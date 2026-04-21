@@ -25,6 +25,10 @@ export function useOpenItems() {
   return useQuery({ queryKey: ['charts', 'open-items'], queryFn: api.charts.openItems });
 }
 
+export function useFilesPerSession() {
+  return useQuery({ queryKey: ['charts', 'files-per-session'], queryFn: api.charts.filesPerSession });
+}
+
 export function useCrossRepoSessions() {
   return useQuery({ queryKey: ['sessions', 'cross-repo'], queryFn: api.sessions.crossRepo });
 }

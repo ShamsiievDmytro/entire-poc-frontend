@@ -77,6 +77,11 @@ export interface OpenItemsPoint {
   items: unknown[];
 }
 
+export interface FilesPerSessionPoint {
+  sessionId: string;
+  filesCount: number;
+}
+
 export interface CrossRepoCommit {
   repo: string;
   checkpointId: string;
@@ -104,6 +109,7 @@ export const api = {
     toolUsage: () => get<ToolUsagePoint[]>('/api/charts/tool-usage'),
     friction: () => get<FrictionPoint[]>('/api/charts/friction'),
     openItems: () => get<OpenItemsPoint[]>('/api/charts/open-items'),
+    filesPerSession: () => get<FilesPerSessionPoint[]>('/api/charts/files-per-session'),
   },
   sessions: {
     crossRepo: () => get<CrossRepoSession[]>('/api/sessions/cross-repo'),
