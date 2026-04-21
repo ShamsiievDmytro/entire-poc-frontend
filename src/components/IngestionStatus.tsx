@@ -14,6 +14,7 @@ export function IngestionStatus() {
     <div className="bg-white border border-gray-200 rounded-lg p-4">
       <div className="flex items-center justify-between mb-3">
         <h2 className="text-lg font-semibold text-gray-800">Ingestion Status</h2>
+            <span className="text-xs text-gray-500">v{status?.version}</span>
         <button
           onClick={() => ingest.mutate()}
           disabled={ingest.isPending}
