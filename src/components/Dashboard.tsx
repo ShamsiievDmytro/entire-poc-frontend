@@ -53,6 +53,10 @@ export function Dashboard() {
           <CrossRepoSessionMap />
         </div>
       </main>
+
+      <footer className="bg-white border-t border-gray-200 px-6 py-4 mt-6 text-center">
+        <p className="text-sm text-gray-500">Entire Pattern C Validation PoC</p>
+      </footer>
     </div>
   );
 }
