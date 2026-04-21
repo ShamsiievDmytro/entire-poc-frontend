@@ -1,78 +1,89 @@
 import { IngestionStatus } from './IngestionStatus';
-import { RepoLegend } from './RepoLegend';
-import { CrossRepoSessionMap } from './CrossRepoSessionMap';
-import { SessionsOverTimeChart } from './charts/SessionsOverTimeChart';
-import { AgentPercentageChart } from './charts/AgentPercentageChart';
-import { SlashCommandsChart } from './charts/SlashCommandsChart';
-import { ToolUsageMixChart } from './charts/ToolUsageMixChart';
-import { FrictionPerSessionChart } from './charts/FrictionPerSessionChart';
-import { OpenItemsPerSessionChart } from './charts/OpenItemsPerSessionChart';
-import { FilesPerSessionChart } from './charts/FilesPerSessionChart';
-import { SessionDurationChart } from './charts/SessionDurationChart';
-import { GitAiAgentPercentageChart } from './charts/GitAiAgentPercentageChart';
-import { EntireVsGitAiComparison } from './EntireVsGitAiComparison';
+import { useGitAiDashboard } from '../hooks/useChartData';
+import { StatCards } from './charts/StatCards';
+import { AgentPctOverTime } from './charts/AgentPctOverTime';
+import { AttributionBreakdown } from './charts/AttributionBreakdown';
+import { AiByDeveloper } from './charts/AiByDeveloper';
+import { ModelDistribution } from './charts/ModelDistribution';
+import { FilesByLayer } from './charts/FilesByLayer';
+import { HumanEditRate } from './charts/HumanEditRate';
+import { CommitCadence } from './charts/CommitCadence';
+import '../lib/chartDefaults';
 
-function ChartCard({ title, children }: { title: string; children: React.ReactNode }) {
+function ChartCard({ title, children, wide }: { title: string; children: React.ReactNode; wide?: boolean }) {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4">
-      <h3 className="text-sm font-semibold text-gray-700 mb-3">{title}</h3>
+    <div className={`bg-white border border-gray-200 rounded-lg p-5 ${wide ? 'col-span-full' : ''}`}>
+      <h3 className="text-sm font-semibold text-gray-700 mb-4">{title}</h3>
       {children}
     </div>
   );
 }
 
 export function Dashboard() {
+  const { data, isLoading, isError } = useGitAiDashboard();
+
+  if (isLoading) return (
+    <main className="max-w-7xl mx-auto px-6 py-6 space-y-6">
+      <IngestionStatus />
+      <div className="animate-pulse space-y-4">
+        <div className="grid grid-cols-3 gap-4">
+          <div className="h-24 bg-gray-100 rounded-lg" />
+          <div className="h-24 bg-gray-100 rounded-lg" />
+          <div className="h-24 bg-gray-100 rounded-lg" />
+        </div>
+        <div className="h-80 bg-gray-100 rounded-lg" />
+        <div className="grid grid-cols-2 gap-4">
+          <div className="h-72 bg-gray-100 rounded-lg" />
+          <div className="h-72 bg-gray-100 rounded-lg" />
+        </div>
+      </div>
+    </main>
+  );
+
+  if (isError) return (
+    <main className="max-w-7xl mx-auto px-6 py-6 space-y-6">
+      <IngestionStatus />
+      <p className="text-red-500 text-sm">Failed to load dashboard data.</p>
+    </main>
+  );
+
+  if (!data) return null;
+
   return (
     <main className="max-w-7xl mx-auto px-6 py-6 space-y-6">
       <IngestionStatus />
 
-      <RepoLegend />
+      <StatCards
+        avgAgentPct={data.summary.avg_agent_pct}
+        pureAiCommitRate={data.summary.pure_ai_commit_rate}
+        firstTimeRightRate={data.summary.first_time_right_rate}
+      />
+
+      <ChartCard title="Agent % Over Time (3-commit rolling average)" wide>
+        <AgentPctOverTime data={data.agent_pct_over_time} />
+      </ChartCard>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <ChartCard title="Sessions Over Time (Chart 1)">
-          <SessionsOverTimeChart />
+        <ChartCard title="Attribution Breakdown (AI vs Human Lines)">
+          <AttributionBreakdown data={data.attribution_breakdown} />
         </ChartCard>
-        <ChartCard title="Agent % per Commit (Chart 4)">
-          <AgentPercentageChart />
+        <ChartCard title="AI Usage by Developer">
+          <AiByDeveloper data={data.by_developer} />
         </ChartCard>
-        <ChartCard title="Slash Command Frequency (Chart 14)">
-          <SlashCommandsChart />
+        <ChartCard title="Model Distribution">
+          <ModelDistribution data={data.by_model} />
         </ChartCard>
-        <ChartCard title="Tool Usage Mix (Chart 21)">
-          <ToolUsageMixChart />
-        </ChartCard>
-        <ChartCard title="Friction per Session (Chart 25)">
-          <FrictionPerSessionChart />
-        </ChartCard>
-        <ChartCard title="Open Items per Session (Chart 26)">
-          <OpenItemsPerSessionChart />
-        </ChartCard>
-        <ChartCard title="Avg Files Touched per Session">
-          <FilesPerSessionChart />
-        </ChartCard>
-        <ChartCard title="Session Duration">
-          <SessionDurationChart />
+        <ChartCard title="Files Touched by Layer">
+          <FilesByLayer data={data.files_by_layer} />
         </ChartCard>
       </div>
 
-      <ChartCard title="Cross-Repo Session Map">
-        <CrossRepoSessionMap />
-      </ChartCard>
-
-      <div className="border-t-2 border-blue-200 pt-6">
-        <h2 className="text-lg font-bold text-gray-900 mb-4">
-          Git AI Attribution
-          <span className="ml-2 inline-block px-1.5 py-0.5 bg-blue-100 text-blue-800 rounded text-xs font-medium">Git AI</span>
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <ChartCard title="Agent % per Commit (Git AI — line-level)">
-            <GitAiAgentPercentageChart />
-          </ChartCard>
-        </div>
-
-        <ChartCard title="Entire vs Git AI — Side-by-Side Comparison">
-          <EntireVsGitAiComparison />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <ChartCard title="Human Edit Rate per Commit">
+          <HumanEditRate data={data.human_edit_rate} />
+        </ChartCard>
+        <ChartCard title="Commit Cadence (hours between commits)">
+          <CommitCadence data={data.commit_cadence} />
         </ChartCard>
       </div>
     </main>

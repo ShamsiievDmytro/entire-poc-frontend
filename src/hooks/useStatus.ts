@@ -16,8 +16,7 @@ export function useTriggerIngest() {
     mutationFn: api.triggerIngest,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['status'] });
-      queryClient.invalidateQueries({ queryKey: ['charts'] });
-      queryClient.invalidateQueries({ queryKey: ['sessions'] });
+      queryClient.invalidateQueries({ queryKey: ['gitai'] });
     },
     onError: (err) => {
       console.error('Ingestion trigger failed:', err);
