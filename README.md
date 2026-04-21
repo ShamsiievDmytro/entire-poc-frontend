@@ -1,6 +1,7 @@
 # entire-poc-frontend
+I am Dmytro Shamsiievs
 React dashboard for the Entire IO Pattern C validation PoC. Visualizes AI session metrics ingested by the backend.
-I am superman
+I am superman and I am strong
 ## Setup
 
 ```bash
