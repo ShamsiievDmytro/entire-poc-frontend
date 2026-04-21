@@ -1,0 +1,26 @@
+src/components/Dashboard.tsx
+  f8553b7b4c5fd899 56-59
+index.html
+  f8553b7b4c5fd899 7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "7a50fa8e4d762f4ca295299a81cb3a2a2d9d03c8",
+  "prompts": {
+    "f8553b7b4c5fd899": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "88b279c9-4a9f-46cf-a09f-133755f7770c",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Dmytro Shamsiiev",
+      "messages": [],
+      "total_additions": 67,
+      "total_deletions": 1,
+      "accepted_lines": 83,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/984a17520ecda888c74c135e29e1ed0e45aad02cf525e3c268adfb0c8765195b"
+    }
+  }
+}
