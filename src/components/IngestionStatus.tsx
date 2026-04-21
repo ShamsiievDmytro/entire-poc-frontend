@@ -21,6 +21,7 @@ export function IngestionStatus() {
           <h2 className="text-lg font-semibold text-gray-800">Ingestion Status</h2>
           {status?.version && <span className="text-xs text-gray-500">v{status.version}</span>}
           {status?.patternVersion && <span className="text-xs text-gray-500">{status.patternVersion}</span>}
+          {status?.gitAiTest && <span className="inline-block px-1.5 py-0.5 bg-blue-100 text-blue-800 rounded text-xs font-medium">Git AI</span>}
         </div>
         <button
           onClick={() => ingest.mutate()}
