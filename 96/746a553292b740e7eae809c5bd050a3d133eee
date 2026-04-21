@@ -1,0 +1,26 @@
+playwright.config.ts
+  f47d465ab35adc6a 1-15
+e2e/dashboard.spec.ts
+  f47d465ab35adc6a 1-184
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "96746a553292b740e7eae809c5bd050a3d133eee",
+  "prompts": {
+    "f47d465ab35adc6a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c2466fea-85f2-4d3e-8784-25f862e22176",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Dmytro Shamsiiev",
+      "messages": [],
+      "total_additions": 48,
+      "total_deletions": 50,
+      "accepted_lines": 199,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/37a3fdca5ef59af69a27803d9ff58626bcb5d94e3f75735940d3311f0c17b34c"
+    }
+  }
+}
