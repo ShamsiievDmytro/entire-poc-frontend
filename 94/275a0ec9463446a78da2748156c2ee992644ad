@@ -1,0 +1,41 @@
+src/utils/format.ts
+  4e009d1320d36c62 1-3
+src/components/CrossRepoSessionMap.tsx
+  4e009d1320d36c62 2
+  f47d465ab35adc6a 44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "94275a0ec9463446a78da2748156c2ee992644ad",
+  "prompts": {
+    "4e009d1320d36c62": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49d6bd0f-65e0-4e54-8e73-bb33b405314c",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Dmytro Shamsiiev",
+      "messages": [],
+      "total_additions": 4,
+      "total_deletions": 0,
+      "accepted_lines": 4,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/26dcdca16ce74ab14ac1fa91ae7999348330ce9f7b86bbbf508cdffcb9fcd6a7"
+    },
+    "f47d465ab35adc6a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c2466fea-85f2-4d3e-8784-25f862e22176",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Dmytro Shamsiiev",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 1,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/b55cf3a7b9816f22804474687db6bd2a2412b225d18b194a18994e12155ba2b9"
+    }
+  }
+}
