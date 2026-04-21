@@ -1,4 +1,5 @@
 import { useCrossRepoSessions } from '../hooks/useChartData';
+import { truncateId } from '../utils/format';
 
 function ConfidenceBadge({ confidence }: { confidence: string }) {
   const cls: Record<string, string> = {
@@ -40,7 +41,7 @@ export function CrossRepoSessionMap() {
 
             return (
               <tr key={s.sessionId} className="border-b border-gray-100 hover:bg-gray-50">
-                <td className="py-2 pr-4 font-mono text-xs">{s.sessionId.slice(0, 12)}...</td>
+                <td className="py-2 pr-4 font-mono text-xs">{truncateId(s.sessionId)}</td>
                 <td className="py-2 pr-4">{s.agent || '-'}</td>
                 <td className="py-2 pr-4">
                   {s.repos.map((r) => (
