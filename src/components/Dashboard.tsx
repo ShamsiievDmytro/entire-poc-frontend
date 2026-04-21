@@ -1,4 +1,5 @@
 import { IngestionStatus } from './IngestionStatus';
+import { RepoLegend } from './RepoLegend';
 import { CrossRepoSessionMap } from './CrossRepoSessionMap';
 import { SessionsOverTimeChart } from './charts/SessionsOverTimeChart';
 import { AgentPercentageChart } from './charts/AgentPercentageChart';
@@ -30,6 +31,8 @@ export function Dashboard() {
 
       <main className="max-w-7xl mx-auto px-6 py-6 space-y-6">
         <IngestionStatus />
+
+        <RepoLegend />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <ChartCard title="Sessions Over Time (Chart 1)">
