@@ -1,0 +1,24 @@
+src/api/client.ts
+  f47d465ab35adc6a 7-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "b6163296c3d3e370821702ed761a4f8dd04617b5",
+  "prompts": {
+    "f47d465ab35adc6a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c2466fea-85f2-4d3e-8784-25f862e22176",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Dmytro Shamsiiev",
+      "messages": [],
+      "total_additions": 2,
+      "total_deletions": 0,
+      "accepted_lines": 2,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/a0302fbae773c7ed515d7894c4f102928b9d43a3f345ad37a02a64c2dd82a2a6"
+    }
+  }
+}
