@@ -1,3 +1,4 @@
+// Re-validated: Pattern A* (workspace-only) on 2026-04-21
 // Validated: Pattern C cross-repo client
 const BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:3001';
 
