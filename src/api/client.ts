@@ -4,6 +4,8 @@ const BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:3001';
 
 export const API_TIMEOUT_MS = 30000;
 
+export const RETRY_COUNT = 3;
+
 async function get<T>(path: string): Promise<T> {
   const res = await fetch(`${BASE}${path}`);
   if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
