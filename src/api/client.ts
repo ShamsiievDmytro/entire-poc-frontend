@@ -145,6 +145,47 @@ export interface EntireVsGitAiRow {
   link_reason: string | null;
 }
 
+export interface GitAiFileAttribution {
+  file: string;
+  promptId: string;
+  lineRanges: string;
+  lineCount: number;
+}
+
+export interface GitAiLocalPrompt {
+  prompt_id: string;
+  session_id: string;
+  workdir: string | null;
+  tool: string;
+  model: string;
+  human_author: string | null;
+  total_additions: number | null;
+  total_deletions: number | null;
+  accepted_lines: number | null;
+  overridden_lines: number | null;
+  message_preview: string | null;
+  message_bytes: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface GitAiCommitDetail {
+  commit_sha: string;
+  repo: string;
+  captured_at: string | null;
+  attribution: {
+    agent: string;
+    model: string | null;
+    agent_lines: number;
+    human_lines: number;
+    agent_percentage: number;
+    prompt_id: string | null;
+  };
+  files: GitAiFileAttribution[];
+  raw_note: string | null;
+  local_prompt: GitAiLocalPrompt | null;
+}
+
 export const api = {
   status: () => get<StatusResponse>('/api/status'),
   triggerIngest: () => post<{ jobId: string }>('/api/ingest/run'),
@@ -165,5 +206,8 @@ export const api = {
     commits: () => get<GitAiCommit[]>('/api/gitai/commits'),
     summary: () => get<GitAiSummary>('/api/gitai/summary'),
     compare: () => get<EntireVsGitAiRow[]>('/api/compare/entire-vs-gitai'),
+    commitDetail: (sha: string) => get<GitAiCommitDetail>(`/api/gitai/commits/${sha}/detail`),
+    transcriptUrl: (sha: string, promptId: string) =>
+      `${BASE}/api/gitai/commits/${sha}/transcript?prompt_id=${encodeURIComponent(promptId)}`,
   },
 };

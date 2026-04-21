@@ -48,3 +48,11 @@ export function useGitAiSummary() {
 export function useEntireVsGitAi() {
   return useQuery({ queryKey: ['gitai', 'compare'], queryFn: api.gitai.compare });
 }
+
+export function useCommitDetail(sha: string) {
+  return useQuery({
+    queryKey: ['gitai', 'commit-detail', sha],
+    queryFn: () => api.gitai.commitDetail(sha),
+    enabled: !!sha,
+  });
+}
