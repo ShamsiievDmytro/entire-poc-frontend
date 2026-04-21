@@ -1,0 +1,30 @@
+src/api/client.ts
+  f5a38c299ba92877 80-84,112
+src/components/charts/FilesPerSessionChart.tsx
+  f5a38c299ba92877 1-28
+src/components/Dashboard.tsx
+  f5a38c299ba92877 9,50-52
+src/hooks/useChartData.ts
+  f5a38c299ba92877 28-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "10d22689550f98bdc2de5cd23f48be50529c09f9",
+  "prompts": {
+    "f5a38c299ba92877": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8ce4fb25-8189-41b0-af61-8f06bd51463d",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Dmytro Shamsiiev",
+      "messages": [],
+      "total_additions": 42,
+      "total_deletions": 0,
+      "accepted_lines": 42,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/97ac5d17dc1d6fd095ae1b30c0b9c412037eb1e455efae7da86a97243f1083d9"
+    }
+  }
+}
