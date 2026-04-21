@@ -1,0 +1,23 @@
+src/pages/CommitListPage.tsx
+  1612649c4bf0b88e 1-16,18-81
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "1fe44b5b707b827a59dd58a3f199098d4919794c",
+  "prompts": {
+    "1612649c4bf0b88e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9b4e6eb7-f49a-48c2-b519-1842319d6fe1",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Dmytro Shamsiiev",
+      "messages": [],
+      "total_additions": 80,
+      "total_deletions": 1,
+      "accepted_lines": 80,
+      "overriden_lines": 0
+    }
+  }
+}
