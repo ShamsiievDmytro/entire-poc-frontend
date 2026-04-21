@@ -7,6 +7,7 @@ import { ToolUsageMixChart } from './charts/ToolUsageMixChart';
 import { FrictionPerSessionChart } from './charts/FrictionPerSessionChart';
 import { OpenItemsPerSessionChart } from './charts/OpenItemsPerSessionChart';
 import { FilesPerSessionChart } from './charts/FilesPerSessionChart';
+import { SessionDurationChart } from './charts/SessionDurationChart';
 
 function ChartCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -49,6 +50,9 @@ export function Dashboard() {
           </ChartCard>
           <ChartCard title="Avg Files Touched per Session">
             <FilesPerSessionChart />
+          </ChartCard>
+          <ChartCard title="Session Duration">
+            <SessionDurationChart />
           </ChartCard>
         </div>
 

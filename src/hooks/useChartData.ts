@@ -29,6 +29,10 @@ export function useFilesPerSession() {
   return useQuery({ queryKey: ['charts', 'files-per-session'], queryFn: api.charts.filesPerSession });
 }
 
+export function useSessionDuration() {
+  return useQuery({ queryKey: ['charts', 'session-duration'], queryFn: api.charts.sessionDuration });
+}
+
 export function useCrossRepoSessions() {
   return useQuery({ queryKey: ['sessions', 'cross-repo'], queryFn: api.sessions.crossRepo });
 }

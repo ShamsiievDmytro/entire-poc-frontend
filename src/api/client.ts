@@ -82,6 +82,13 @@ export interface FilesPerSessionPoint {
   filesCount: number;
 }
 
+export interface SessionDurationPoint {
+  sessionId: string;
+  durationMinutes: number;
+  agent: string;
+  repos: string[];
+}
+
 export interface CrossRepoCommit {
   repo: string;
   checkpointId: string;
@@ -110,6 +117,7 @@ export const api = {
     friction: () => get<FrictionPoint[]>('/api/charts/friction'),
     openItems: () => get<OpenItemsPoint[]>('/api/charts/open-items'),
     filesPerSession: () => get<FilesPerSessionPoint[]>('/api/charts/files-per-session'),
+    sessionDuration: () => get<SessionDurationPoint[]>('/api/charts/session-duration'),
   },
   sessions: {
     crossRepo: () => get<CrossRepoSession[]>('/api/sessions/cross-repo'),
