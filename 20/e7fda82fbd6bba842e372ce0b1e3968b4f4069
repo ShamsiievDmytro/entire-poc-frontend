@@ -1,0 +1,74 @@
+src/components/Dashboard.tsx
+  f8553b7b4c5fd899 1-58
+src/hooks/useChartData.ts
+  f8553b7b4c5fd899 1-30
+src/components/charts/AgentPercentageChart.tsx
+  f8553b7b4c5fd899 1-31
+src/api/client.ts
+  f8553b7b4c5fd899 1-89
+src/main.tsx
+  f8553b7b4c5fd899 1-10
+.claude/settings.json
+  f8553b7b4c5fd899 1-15
+.entire/settings.json
+  f8553b7b4c5fd899 1-10
+README.md
+  f8553b7b4c5fd899 2-37
+eslint.config.js
+  f8553b7b4c5fd899 1-23
+tsconfig.app.json
+  f8553b7b4c5fd899 1-25
+src/hooks/useStatus.ts
+  f8553b7b4c5fd899 1-20
+src/components/charts/ToolUsageMixChart.tsx
+  f8553b7b4c5fd899 1-25
+src/components/charts/SlashCommandsChart.tsx
+  f8553b7b4c5fd899 1-21
+tsconfig.node.json
+  f8553b7b4c5fd899 1-24
+src/components/IngestionStatus.tsx
+  f8553b7b4c5fd899 1-56
+index.html
+  f8553b7b4c5fd899 1-13
+src/App.tsx
+  f8553b7b4c5fd899 1-21
+.gitignore
+  f8553b7b4c5fd899 1-4
+package.json
+  f8553b7b4c5fd899 1-34
+tsconfig.json
+  f8553b7b4c5fd899 1-7
+src/components/charts/SessionsOverTimeChart.tsx
+  f8553b7b4c5fd899 1-21
+src/styles/globals.css
+  f8553b7b4c5fd899 1
+src/components/charts/FrictionPerSessionChart.tsx
+  f8553b7b4c5fd899 1-26
+vite.config.ts
+  f8553b7b4c5fd899 1-7
+src/components/charts/OpenItemsPerSessionChart.tsx
+  f8553b7b4c5fd899 1-26
+src/components/CrossRepoSessionMap.tsx
+  f8553b7b4c5fd899 1-68
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "20e7fda82fbd6bba842e372ce0b1e3968b4f4069",
+  "prompts": {
+    "f8553b7b4c5fd899": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "88b279c9-4a9f-46cf-a09f-133755f7770c",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Dmytro Shamsiiev",
+      "messages": [],
+      "total_additions": 766,
+      "total_deletions": 539,
+      "accepted_lines": 760,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/96959253a6d527f7fedba99eed8dca158e10c7ba662c105e97b9df1a8239a70e"
+    }
+  }
+}
