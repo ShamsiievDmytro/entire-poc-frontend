@@ -41,6 +41,7 @@ export interface StatusResponse {
   sessionCount: number;
   checkpointCount: number;
   linkCount: number;
+  gitAiTest?: boolean;
 }
 
 export interface SessionsOverTimePoint {
@@ -106,6 +107,44 @@ export interface CrossRepoSession {
   confidence: 'HIGH' | 'MEDIUM' | 'LOW' | null;
 }
 
+// Git AI types
+export interface GitAiCommit {
+  repo: string;
+  commit_sha: string;
+  agent: string;
+  model: string | null;
+  agent_lines: number;
+  human_lines: number;
+  agent_percentage: number;
+  prompt_id: string | null;
+  files_touched_json: string | null;
+  raw_note_json: string | null;
+  captured_at: string | null;
+  ingested_at: string;
+}
+
+export interface GitAiSummary {
+  total: number;
+  byRepo: { repo: string; commits: number; avg_agent_pct: number; total_agent_lines: number; total_human_lines: number }[];
+  byAgent: { agent: string; commits: number; avg_pct: number }[];
+}
+
+export interface EntireVsGitAiRow {
+  commit_sha: string;
+  repo: string;
+  gitai_agent: string | null;
+  gitai_model: string | null;
+  gitai_agent_lines: number | null;
+  gitai_human_lines: number | null;
+  gitai_agent_pct: number | null;
+  gitai_files: string | null;
+  entire_agent_pct: number | null;
+  entire_agent_lines: number | null;
+  entire_files: string | null;
+  link_confidence: string | null;
+  link_reason: string | null;
+}
+
 export const api = {
   status: () => get<StatusResponse>('/api/status'),
   triggerIngest: () => post<{ jobId: string }>('/api/ingest/run'),
@@ -121,5 +160,10 @@ export const api = {
   },
   sessions: {
     crossRepo: () => get<CrossRepoSession[]>('/api/sessions/cross-repo'),
+  },
+  gitai: {
+    commits: () => get<GitAiCommit[]>('/api/gitai/commits'),
+    summary: () => get<GitAiSummary>('/api/gitai/summary'),
+    compare: () => get<EntireVsGitAiRow[]>('/api/compare/entire-vs-gitai'),
   },
 };

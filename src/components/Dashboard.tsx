@@ -8,6 +8,8 @@ import { FrictionPerSessionChart } from './charts/FrictionPerSessionChart';
 import { OpenItemsPerSessionChart } from './charts/OpenItemsPerSessionChart';
 import { FilesPerSessionChart } from './charts/FilesPerSessionChart';
 import { SessionDurationChart } from './charts/SessionDurationChart';
+import { GitAiAgentPercentageChart } from './charts/GitAiAgentPercentageChart';
+import { EntireVsGitAiComparison } from './EntireVsGitAiComparison';
 
 function ChartCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -59,10 +61,27 @@ export function Dashboard() {
         <ChartCard title="Cross-Repo Session Map">
           <CrossRepoSessionMap />
         </ChartCard>
+
+        <div className="border-t-2 border-blue-200 pt-6">
+          <h2 className="text-lg font-bold text-gray-900 mb-4">
+            Git AI Attribution
+            <span className="ml-2 inline-block px-1.5 py-0.5 bg-blue-100 text-blue-800 rounded text-xs font-medium">Git AI</span>
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <ChartCard title="Agent % per Commit (Git AI — line-level)">
+              <GitAiAgentPercentageChart />
+            </ChartCard>
+          </div>
+
+          <ChartCard title="Entire vs Git AI — Side-by-Side Comparison">
+            <EntireVsGitAiComparison />
+          </ChartCard>
+        </div>
       </main>
 
       <footer className="bg-white border-t border-gray-200 px-6 py-4 mt-6 text-center">
-        <p className="text-sm text-gray-500">Entire Pattern C Validation PoC</p>
+        <p className="text-sm text-gray-500">Entire Pattern A* + Git AI Validation PoC</p>
       </footer>
     </div>
   );

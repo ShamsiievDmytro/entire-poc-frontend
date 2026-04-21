@@ -36,3 +36,15 @@ export function useSessionDuration() {
 export function useCrossRepoSessions() {
   return useQuery({ queryKey: ['sessions', 'cross-repo'], queryFn: api.sessions.crossRepo });
 }
+
+export function useGitAiCommits() {
+  return useQuery({ queryKey: ['gitai', 'commits'], queryFn: api.gitai.commits });
+}
+
+export function useGitAiSummary() {
+  return useQuery({ queryKey: ['gitai', 'summary'], queryFn: api.gitai.summary });
+}
+
+export function useEntireVsGitAi() {
+  return useQuery({ queryKey: ['gitai', 'compare'], queryFn: api.gitai.compare });
+}
