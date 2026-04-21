@@ -1,6 +1,8 @@
 // Validated: Pattern C cross-repo client
 const BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:3001';
 
+export const API_TIMEOUT_MS = 30000;
+
 async function get<T>(path: string): Promise<T> {
   const res = await fetch(`${BASE}${path}`);
   if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
