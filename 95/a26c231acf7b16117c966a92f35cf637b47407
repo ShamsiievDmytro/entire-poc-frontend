@@ -1,0 +1,64 @@
+src/components/IngestionStatus.tsx
+  e8964a18fc0452f2 2-8,11,15,20-24,33,37,44
+src/components/charts/ToolUsageMixChart.tsx
+  e8964a18fc0452f2 3,8,11,15,18-19
+src/components/charts/SessionsOverTimeChart.tsx
+  e8964a18fc0452f2 3,6,9,13
+src/App.tsx
+  e8964a18fc0452f2 3,8
+src/utils/format.ts
+  e8964a18fc0452f2 1-2,4-5
+src/components/charts/AgentPercentageChart.tsx
+  e8964a18fc0452f2 3,12,15,19,22,26-27
+src/components/charts/OpenItemsPerSessionChart.tsx
+  e8964a18fc0452f2 3,6,9,13,18
+src/components/Dashboard.tsx
+  e8964a18fc0452f2 51,53
+src/api/client.ts
+  e8964a18fc0452f2 3,6-17,21-32,37-38,94
+src/components/CrossRepoSessionMap.tsx
+  e8964a18fc0452f2 3,5-8,21,24,53,61
+src/components/charts/FrictionPerSessionChart.tsx
+  e8964a18fc0452f2 3,6,9,13,18
+src/components/charts/SlashCommandsChart.tsx
+  e8964a18fc0452f2 3,6,9,13
+src/hooks/useStatus.ts
+  e8964a18fc0452f2 3,9,18-23
+src/constants.ts
+  e8964a18fc0452f2 1-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.2",
+  "base_commit_sha": "95a26c231acf7b16117c966a92f35cf637b47407",
+  "prompts": {
+    "e8964a18fc0452f2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "06eb3ee8-79a1-4628-b0bf-e9afa445d63b",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Dmytro Shamsiiev",
+      "messages": [],
+      "total_additions": 105,
+      "total_deletions": 53,
+      "accepted_lines": 105,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/7364d1060a536d8d611144f2b0bb2218c1ebb0302734476c928efe08736d00c7"
+    },
+    "f47d465ab35adc6a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c2466fea-85f2-4d3e-8784-25f862e22176",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Dmytro Shamsiiev",
+      "messages": [],
+      "total_additions": 201,
+      "total_deletions": 0,
+      "accepted_lines": 201,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/5765739b7ffedcfebed94aeb3e348afc3381ca47b5759146a149511c455d2ce4"
+    }
+  }
+}
