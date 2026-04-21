@@ -1,8 +1,11 @@
 import { useCrossRepoSessions } from '../hooks/useChartData';
 import { truncateId } from '../utils/format';
+import { REPO_PREFIX } from '../constants';
 
-function ConfidenceBadge({ confidence }: { confidence: string }) {
-  const cls: Record<string, string> = {
+type Confidence = 'HIGH' | 'MEDIUM' | 'LOW';
+
+function ConfidenceBadge({ confidence }: { confidence: Confidence }) {
+  const cls: Record<Confidence, string> = {
     HIGH: 'bg-green-100 text-green-800',
     MEDIUM: 'bg-yellow-100 text-yellow-800',
     LOW: 'bg-red-100 text-red-800',
@@ -15,9 +18,10 @@ function ConfidenceBadge({ confidence }: { confidence: string }) {
 }
 
 export function CrossRepoSessionMap() {
-  const { data, isLoading } = useCrossRepoSessions();
+  const { data, isLoading, isError } = useCrossRepoSessions();
 
   if (isLoading) return <div className="animate-pulse h-40 bg-gray-100 rounded" />;
+  if (isError) return <p className="text-red-500 text-sm">Failed to load cross-repo sessions.</p>;
   if (!data?.length) return <p className="text-gray-500 text-sm">No cross-repo sessions yet</p>;
 
   return (
@@ -46,7 +50,7 @@ export function CrossRepoSessionMap() {
                 <td className="py-2 pr-4">
                   {s.repos.map((r) => (
                     <span key={r} className="inline-block mr-1 px-1.5 py-0.5 bg-indigo-100 text-indigo-700 rounded text-xs">
-                      {r.replace('entire-poc-', '')}
+                      {r.replace(REPO_PREFIX, '')}
                     </span>
                   ))}
                 </td>
@@ -54,7 +58,7 @@ export function CrossRepoSessionMap() {
                 <td className="py-2 space-x-1">
                   {Object.entries(confidenceCounts).map(([conf, count]) => (
                     <span key={conf}>
-                      <ConfidenceBadge confidence={conf} /> x{count}
+                      <ConfidenceBadge confidence={conf as Confidence} /> x{count}
                     </span>
                   ))}
                   {!s.commits.length && <span className="text-gray-400">-</span>}

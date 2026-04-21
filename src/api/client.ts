@@ -1,25 +1,41 @@
-// Re-validated: Pattern A* (workspace-only) on 2026-04-21
-// Validated: Pattern C cross-repo client
 const BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:3001';
 
-export const API_TIMEOUT_MS = 30000;
-
-export const RETRY_COUNT = 3;
+const API_TIMEOUT_MS = 30_000;
 
 async function get<T>(path: string): Promise<T> {
-  const res = await fetch(`${BASE}${path}`);
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-  return res.json();
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT_MS);
+  try {
+    const res = await fetch(`${BASE}${path}`, { signal: controller.signal });
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      throw new Error(`${res.status} ${res.statusText}: ${body}`);
+    }
+    return res.json();
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
 
 async function post<T>(path: string): Promise<T> {
-  const res = await fetch(`${BASE}${path}`, { method: 'POST' });
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-  return res.json();
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT_MS);
+  try {
+    const res = await fetch(`${BASE}${path}`, { method: 'POST', signal: controller.signal });
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      throw new Error(`${res.status} ${res.statusText}: ${body}`);
+    }
+    return res.json();
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
 
 // Types matching backend response shapes
 export interface StatusResponse {
+  version?: string;
+  patternVersion?: string;
   lastRun: string | null;
   repos: string[];
   sessionCount: number;
@@ -75,7 +91,7 @@ export interface CrossRepoSession {
   agent: string | null;
   repos: string[];
   commits: CrossRepoCommit[];
-  confidence: string | null;
+  confidence: 'HIGH' | 'MEDIUM' | 'LOW' | null;
 }
 
 export const api = {
