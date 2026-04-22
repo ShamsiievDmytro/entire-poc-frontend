@@ -25,36 +25,36 @@ export function StatCards({ avgAgentPct, pureAiCommitRate, firstTimeRightRate, a
     <div className="space-y-4">
       <div className="grid grid-cols-3 gap-4">
         <StatCard
-          value={`${avgAgentPct.toFixed(1)}%`}
+          value={`${avgAgentPct.toFixed(2)}%`}
           label="Avg Agent Attribution"
           color="border-l-indigo-500"
         />
         <StatCard
-          value={`${pureAiCommitRate.toFixed(1)}%`}
+          value={`${pureAiCommitRate.toFixed(2)}%`}
           label="Pure-AI Commit Rate"
           color="border-l-violet-500"
         />
         <StatCard
-          value={`${firstTimeRightRate.toFixed(1)}%`}
+          value={`${firstTimeRightRate.toFixed(2)}%`}
           label="First-Time-Right Rate"
           color="border-l-emerald-500"
         />
       </div>
       <div className="grid grid-cols-3 gap-4">
         <StatCard
-          value={`${aiPct.toFixed(1)}%`}
+          value={`${aiPct.toFixed(2)}%`}
           label="AI Lines"
           color="border-l-indigo-400"
           sub={`${totalAiLines.toLocaleString()} lines`}
         />
         <StatCard
-          value={`${humanPct.toFixed(1)}%`}
+          value={`${humanPct.toFixed(2)}%`}
           label="Human Lines"
           color="border-l-emerald-400"
           sub={`${totalHumanLines.toLocaleString()} lines`}
         />
         <StatCard
-          value={`${overriddenPct.toFixed(1)}%`}
+          value={`${overriddenPct.toFixed(2)}%`}
           label="AI Modified by Human"
           color="border-l-amber-500"
           sub={`${totalOverriddenLines.toLocaleString()} lines`}
