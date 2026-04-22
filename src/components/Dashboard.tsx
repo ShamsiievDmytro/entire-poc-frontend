@@ -56,6 +56,9 @@ export function Dashboard() {
         avgAgentPct={data.summary.avg_agent_pct}
         pureAiCommitRate={data.summary.pure_ai_commit_rate}
         firstTimeRightRate={data.summary.first_time_right_rate}
+        totalAiLines={data.summary.total_ai_lines}
+        totalHumanLines={data.summary.total_human_lines}
+        totalOverriddenLines={data.summary.total_overridden_lines}
       />
 
       <ChartCard title="Agent % Over Time (3-commit rolling average)" wide>

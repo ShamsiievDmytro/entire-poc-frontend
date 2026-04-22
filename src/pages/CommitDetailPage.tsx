@@ -62,9 +62,10 @@ export function CommitDetailPage() {
           {' · '}{attribution.agent}{attribution.model ? ` (${attribution.model})` : ''}
         </p>
 
-        <div className="grid grid-cols-3 gap-4 mt-4">
+        <div className="grid grid-cols-4 gap-4 mt-4">
           <StatCard label="AI Lines" value={attribution.agent_lines} color="border-blue-200 bg-blue-50" />
           <StatCard label="Human Lines" value={attribution.human_lines} color="border-gray-200 bg-gray-50" />
+          <StatCard label="AI Modified by Human" value={attribution.overridden_lines} color="border-amber-200 bg-amber-50" />
           <StatCard label="Agent %" value={`${attribution.agent_percentage.toFixed(1)}%`} color="border-indigo-200 bg-indigo-50" />
         </div>
       </div>

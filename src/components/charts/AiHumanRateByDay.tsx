@@ -6,8 +6,10 @@ interface DataPoint {
   day: string;
   ai_lines: number;
   human_lines: number;
+  overridden_lines: number;
   ai_pct: number;
   human_pct: number;
+  overridden_pct: number;
 }
 
 function formatDay(day: string): string {
@@ -25,6 +27,12 @@ export function AiHumanRateByDay({ data }: { data: DataPoint[] }) {
         label: 'AI %',
         data: data.map((d) => d.ai_pct),
         backgroundColor: COLORS.ai,
+        borderRadius: 2,
+      },
+      {
+        label: 'AI Modified by Human %',
+        data: data.map((d) => d.overridden_pct),
+        backgroundColor: '#f59e0b',
         borderRadius: 2,
       },
       {
@@ -57,7 +65,7 @@ export function AiHumanRateByDay({ data }: { data: DataPoint[] }) {
             const idx = items[0]?.dataIndex;
             if (idx === undefined) return '';
             const d = data[idx];
-            return `AI: ${d.ai_lines} lines · Human: ${d.human_lines} lines`;
+            return `AI: ${d.ai_lines} lines · Modified: ${d.overridden_lines} lines · Human: ${d.human_lines} lines`;
           },
         },
       },
