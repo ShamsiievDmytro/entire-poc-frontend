@@ -7,6 +7,21 @@ function formatLastRun(value: string | null | undefined): string {
   return isNaN(parsed.getTime()) ? 'Never' : parsed.toLocaleString();
 }
 
+function formatRelativeTime(value: string | null | undefined): string {
+  if (!value) return '';
+  const parsed = new Date(value);
+  if (isNaN(parsed.getTime())) return '';
+  const diffMs = Date.now() - parsed.getTime();
+  const diffSeconds = Math.floor(diffMs / 1000);
+  if (diffSeconds < 60) return `${diffSeconds} second${diffSeconds !== 1 ? 's' : ''} ago`;
+  const diffMinutes = Math.floor(diffSeconds / 60);
+  if (diffMinutes < 60) return `${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''} ago`;
+  const diffHours = Math.floor(diffMinutes / 60);
+  if (diffHours < 24) return `${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+  const diffDays = Math.floor(diffHours / 24);
+  return `${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+}
+
 export function IngestionStatus() {
   const { data: status, isLoading, isError } = useStatus();
   const ingest = useTriggerIngest();
@@ -32,10 +47,18 @@ export function IngestionStatus() {
         </button>
       </div>
       {ingest.isError && <p className="text-red-500 text-xs mb-2">Ingestion trigger failed. Try again.</p>}
+      {status?.gitAiTest && (
+        <p className="text-xs text-blue-700 mb-2">
+          Git AI: tracking {status.repos.length} repo{status.repos.length !== 1 ? 's' : ''}
+        </p>
+      )}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-sm">
         <div>
           <span className="text-gray-500">Last Run</span>
           <p className="font-medium">{formatLastRun(status?.lastRun)}</p>
+          {formatRelativeTime(status?.lastRun) && (
+            <p className="text-xs text-gray-400">{formatRelativeTime(status?.lastRun)}</p>
+          )}
         </div>
         <div>
           <span className="text-gray-500">Repos</span>
