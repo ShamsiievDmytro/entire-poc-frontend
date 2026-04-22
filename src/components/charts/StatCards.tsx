@@ -2,6 +2,9 @@ interface StatCardsProps {
   avgAgentPct: number;
   pureAiCommitRate: number;
   firstTimeRightRate: number;
+  aiPct: number;
+  humanPct: number;
+  overriddenPct: number;
   totalAiLines: number;
   totalHumanLines: number;
   totalOverriddenLines: number;
@@ -17,39 +20,46 @@ function StatCard({ value, label, color, sub }: { value: string; label: string; 
   );
 }
 
-export function StatCards({ avgAgentPct, pureAiCommitRate, firstTimeRightRate, totalAiLines, totalHumanLines, totalOverriddenLines }: StatCardsProps) {
+export function StatCards({ avgAgentPct, pureAiCommitRate, firstTimeRightRate, aiPct, humanPct, overriddenPct, totalAiLines, totalHumanLines, totalOverriddenLines }: StatCardsProps) {
   return (
-    <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-      <StatCard
-        value={`${avgAgentPct.toFixed(1)}%`}
-        label="Avg Agent Attribution"
-        color="border-l-indigo-500"
-      />
-      <StatCard
-        value={`${pureAiCommitRate.toFixed(1)}%`}
-        label="Pure-AI Commit Rate"
-        color="border-l-violet-500"
-      />
-      <StatCard
-        value={`${firstTimeRightRate.toFixed(1)}%`}
-        label="First-Time-Right Rate"
-        color="border-l-emerald-500"
-      />
-      <StatCard
-        value={totalAiLines.toLocaleString()}
-        label="AI Lines"
-        color="border-l-indigo-400"
-      />
-      <StatCard
-        value={totalHumanLines.toLocaleString()}
-        label="Human Lines"
-        color="border-l-emerald-400"
-      />
-      <StatCard
-        value={totalOverriddenLines.toLocaleString()}
-        label="AI Modified by Human"
-        color="border-l-amber-500"
-      />
+    <div className="space-y-4">
+      <div className="grid grid-cols-3 gap-4">
+        <StatCard
+          value={`${avgAgentPct.toFixed(1)}%`}
+          label="Avg Agent Attribution"
+          color="border-l-indigo-500"
+        />
+        <StatCard
+          value={`${pureAiCommitRate.toFixed(1)}%`}
+          label="Pure-AI Commit Rate"
+          color="border-l-violet-500"
+        />
+        <StatCard
+          value={`${firstTimeRightRate.toFixed(1)}%`}
+          label="First-Time-Right Rate"
+          color="border-l-emerald-500"
+        />
+      </div>
+      <div className="grid grid-cols-3 gap-4">
+        <StatCard
+          value={`${aiPct.toFixed(1)}%`}
+          label="AI Lines"
+          color="border-l-indigo-400"
+          sub={`${totalAiLines.toLocaleString()} lines`}
+        />
+        <StatCard
+          value={`${humanPct.toFixed(1)}%`}
+          label="Human Lines"
+          color="border-l-emerald-400"
+          sub={`${totalHumanLines.toLocaleString()} lines`}
+        />
+        <StatCard
+          value={`${overriddenPct.toFixed(1)}%`}
+          label="AI Modified by Human"
+          color="border-l-amber-500"
+          sub={`${totalOverriddenLines.toLocaleString()} lines`}
+        />
+      </div>
     </div>
   );
 }

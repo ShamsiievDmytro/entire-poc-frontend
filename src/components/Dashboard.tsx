@@ -6,7 +6,6 @@ import { AttributionBreakdown } from './charts/AttributionBreakdown';
 import { AiByDeveloper } from './charts/AiByDeveloper';
 import { ModelDistribution } from './charts/ModelDistribution';
 import { AiHumanRateByDay } from './charts/AiHumanRateByDay';
-import { CommitCadence } from './charts/CommitCadence';
 import '../lib/chartDefaults';
 
 function ChartCard({ title, children, wide }: { title: string; children: React.ReactNode; wide?: boolean }) {
@@ -56,6 +55,9 @@ export function Dashboard() {
         avgAgentPct={data.summary.avg_agent_pct}
         pureAiCommitRate={data.summary.pure_ai_commit_rate}
         firstTimeRightRate={data.summary.first_time_right_rate}
+        aiPct={data.summary.ai_pct}
+        humanPct={data.summary.human_pct}
+        overriddenPct={data.summary.overridden_pct}
         totalAiLines={data.summary.total_ai_lines}
         totalHumanLines={data.summary.total_human_lines}
         totalOverriddenLines={data.summary.total_overridden_lines}
@@ -66,7 +68,7 @@ export function Dashboard() {
       </ChartCard>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <ChartCard title="Attribution Breakdown (AI vs Human Lines)">
+        <ChartCard title="Attribution Breakdown (% per Commit)">
           <AttributionBreakdown data={data.attribution_breakdown} />
         </ChartCard>
         <ChartCard title="AI Usage by Developer">
@@ -79,10 +81,6 @@ export function Dashboard() {
           <AiHumanRateByDay data={data.ai_human_rate_by_day} />
         </ChartCard>
       </div>
-
-      <ChartCard title="Commit Cadence (hours between commits)" wide>
-        <CommitCadence data={data.commit_cadence} />
-      </ChartCard>
     </main>
   );
 }

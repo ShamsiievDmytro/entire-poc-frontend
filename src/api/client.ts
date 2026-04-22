@@ -111,13 +111,15 @@ export interface GitAiDashboardData {
     total_ai_lines: number;
     total_human_lines: number;
     total_overridden_lines: number;
+    ai_pct: number;
+    human_pct: number;
+    overridden_pct: number;
   };
   agent_pct_over_time: { commit_sha: string; repo: string; agent_percentage: number; captured_at: string | null }[];
-  attribution_breakdown: { commit_sha: string; repo: string; agent_lines: number; human_lines: number; captured_at: string | null }[];
-  by_developer: { author: string; commits: number; avg_agent_pct: number }[];
+  attribution_breakdown: { commit_sha: string; repo: string; ai_pct: number; human_pct: number; overridden_pct: number; agent_lines: number; human_lines: number; overridden_lines: number; captured_at: string | null }[];
+  by_developer: { author: string; commits: number; ai_lines: number; human_lines: number; overridden_lines: number; ai_pct: number; human_pct: number; overridden_pct: number }[];
   by_model: { model: string; commits: number }[];
   ai_human_rate_by_day: { day: string; ai_lines: number; human_lines: number; overridden_lines: number; ai_pct: number; human_pct: number; overridden_pct: number }[];
-  commit_cadence: { commit_sha: string; hours_since_prev: number; captured_at: string | null }[];
 }
 
 export const api = {
