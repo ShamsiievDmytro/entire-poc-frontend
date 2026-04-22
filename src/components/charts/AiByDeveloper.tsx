@@ -8,16 +8,27 @@ interface DataPoint {
   avg_agent_pct: number;
 }
 
+function truncateAuthor(author: string): string {
+  // "Dmytro Shamsiiev <dmytro.shamsiiev@ventionteams.com>" → "Dmytro Shamsiiev..."
+  const emailStart = author.indexOf(' <');
+  if (emailStart > 0) return author.slice(0, emailStart);
+  if (author.length > 25) return author.slice(0, 22) + '...';
+  return author;
+}
+
 export function AiByDeveloper({ data }: { data: DataPoint[] }) {
   if (!data.length) return <p className="text-gray-500 text-sm">No data yet</p>;
 
+  const sorted = [...data].sort((a, b) => b.avg_agent_pct - a.avg_agent_pct);
+
   const chartData = {
-    labels: data.map((d) => `${d.author} (${d.commits})`),
+    labels: sorted.map((d) => `${truncateAuthor(d.author)} (${d.commits})`),
     datasets: [
       {
         label: 'Avg Agent %',
-        data: data.map((d) => d.avg_agent_pct),
+        data: sorted.map((d) => d.avg_agent_pct),
         backgroundColor: COLORS.ai,
+        borderRadius: 4,
       },
     ],
   };
@@ -39,6 +50,16 @@ export function AiByDeveloper({ data }: { data: DataPoint[] }) {
     },
     plugins: {
       legend: { display: false },
+      tooltip: {
+        callbacks: {
+          title: (items) => {
+            const idx = items[0]?.dataIndex;
+            if (idx === undefined) return '';
+            return sorted[idx].author;
+          },
+          label: (ctx) => `${ctx.parsed.x}% AI · ${sorted[ctx.dataIndex].commits} commits`,
+        },
+      },
     },
   };
 

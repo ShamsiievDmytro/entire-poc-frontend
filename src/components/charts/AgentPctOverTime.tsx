@@ -14,8 +14,14 @@ function rollingAverage(data: DataPoint[], window: number): number[] {
     const start = Math.max(0, i - window + 1);
     const slice = data.slice(start, i + 1);
     const sum = slice.reduce((acc, d) => acc + d.agent_percentage, 0);
-    return sum / slice.length;
+    return Math.round(sum / slice.length * 10) / 10;
   });
+}
+
+function formatDate(value: string | null): string {
+  if (!value) return '';
+  const d = new Date(value);
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 }
 
 export function AgentPctOverTime({ data }: { data: DataPoint[] }) {
@@ -24,7 +30,7 @@ export function AgentPctOverTime({ data }: { data: DataPoint[] }) {
   const smoothed = rollingAverage(data, 3);
 
   const chartData = {
-    labels: data.map((d) => d.commit_sha.slice(0, 7)),
+    labels: data.map((d) => formatDate(d.captured_at)),
     datasets: [
       {
         label: 'Agent %',
@@ -51,10 +57,22 @@ export function AgentPctOverTime({ data }: { data: DataPoint[] }) {
       },
       x: {
         grid: { display: false },
+        ticks: { maxRotation: 45, maxTicksLimit: 12, font: { size: 10 } },
       },
     },
     plugins: {
       legend: { display: false },
+      tooltip: {
+        callbacks: {
+          title: (items) => {
+            const idx = items[0]?.dataIndex;
+            if (idx === undefined) return '';
+            const d = data[idx];
+            return `${d.commit_sha.slice(0, 7)} · ${formatDate(d.captured_at)}`;
+          },
+          label: (ctx) => `Agent: ${ctx.parsed.y}%`,
+        },
+      },
     },
   };
 

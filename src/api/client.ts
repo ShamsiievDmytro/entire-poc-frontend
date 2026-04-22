@@ -114,8 +114,7 @@ export interface GitAiDashboardData {
   attribution_breakdown: { commit_sha: string; repo: string; agent_lines: number; human_lines: number; captured_at: string | null }[];
   by_developer: { author: string; commits: number; avg_agent_pct: number }[];
   by_model: { model: string; commits: number }[];
-  files_by_layer: { layer: string; ai_lines: number; human_lines: number }[];
-  human_edit_rate: { commit_sha: string; repo: string; human_pct: number; captured_at: string | null }[];
+  ai_human_rate_by_day: { day: string; ai_lines: number; human_lines: number; ai_pct: number; human_pct: number }[];
   commit_cadence: { commit_sha: string; hours_since_prev: number; captured_at: string | null }[];
 }
 

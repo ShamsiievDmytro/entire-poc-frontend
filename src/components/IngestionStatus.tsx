@@ -52,7 +52,7 @@ export function IngestionStatus() {
           Git AI: tracking {status.repos.length} repo{status.repos.length !== 1 ? 's' : ''}
         </p>
       )}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-sm">
+      <div className="grid grid-cols-2 gap-3 text-sm">
         <div>
           <span className="text-gray-500">Last Run</span>
           <p className="font-medium">{formatLastRun(status?.lastRun)}</p>
@@ -70,18 +70,6 @@ export function IngestionStatus() {
             ))}
             {!status?.repos.length && <span className="text-gray-400">None</span>}
           </p>
-        </div>
-        <div>
-          <span className="text-gray-500">Sessions</span>
-          <p className="font-medium">{status?.sessionCount ?? 0}</p>
-        </div>
-        <div>
-          <span className="text-gray-500">Checkpoints</span>
-          <p className="font-medium">{status?.checkpointCount ?? 0}</p>
-        </div>
-        <div>
-          <span className="text-gray-500">Links</span>
-          <p className="font-medium">{status?.linkCount ?? 0}</p>
         </div>
       </div>
     </div>

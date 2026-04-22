@@ -5,8 +5,7 @@ import { AgentPctOverTime } from './charts/AgentPctOverTime';
 import { AttributionBreakdown } from './charts/AttributionBreakdown';
 import { AiByDeveloper } from './charts/AiByDeveloper';
 import { ModelDistribution } from './charts/ModelDistribution';
-import { FilesByLayer } from './charts/FilesByLayer';
-import { HumanEditRate } from './charts/HumanEditRate';
+import { AiHumanRateByDay } from './charts/AiHumanRateByDay';
 import { CommitCadence } from './charts/CommitCadence';
 import '../lib/chartDefaults';
 
@@ -73,19 +72,14 @@ export function Dashboard() {
         <ChartCard title="Model Distribution">
           <ModelDistribution data={data.by_model} />
         </ChartCard>
-        <ChartCard title="Files Touched by Layer">
-          <FilesByLayer data={data.files_by_layer} />
+        <ChartCard title="AI vs Human Rate by Day">
+          <AiHumanRateByDay data={data.ai_human_rate_by_day} />
         </ChartCard>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <ChartCard title="Human Edit Rate per Commit">
-          <HumanEditRate data={data.human_edit_rate} />
-        </ChartCard>
-        <ChartCard title="Commit Cadence (hours between commits)">
-          <CommitCadence data={data.commit_cadence} />
-        </ChartCard>
-      </div>
+      <ChartCard title="Commit Cadence (hours between commits)" wide>
+        <CommitCadence data={data.commit_cadence} />
+      </ChartCard>
     </main>
   );
 }
