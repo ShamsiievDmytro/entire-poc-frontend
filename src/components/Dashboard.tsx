@@ -2,7 +2,6 @@ import { IngestionStatus } from './IngestionStatus';
 import { useGitAiDashboard } from '../hooks/useChartData';
 import { StatCards } from './charts/StatCards';
 import { AgentPctOverTime } from './charts/AgentPctOverTime';
-import { AttributionBreakdown } from './charts/AttributionBreakdown';
 import { AiByDeveloper } from './charts/AiByDeveloper';
 import { ModelDistribution } from './charts/ModelDistribution';
 import { AiHumanRateByDay } from './charts/AiHumanRateByDay';
@@ -68,19 +67,17 @@ export function Dashboard() {
       </ChartCard>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <ChartCard title="Attribution Breakdown (% per Commit)">
-          <AttributionBreakdown data={data.attribution_breakdown} />
-        </ChartCard>
         <ChartCard title="AI Usage by Developer">
           <AiByDeveloper data={data.by_developer} />
         </ChartCard>
         <ChartCard title="Model Distribution">
           <ModelDistribution data={data.by_model} />
         </ChartCard>
-        <ChartCard title="AI vs Human Rate by Day">
-          <AiHumanRateByDay data={data.ai_human_rate_by_day} />
-        </ChartCard>
       </div>
+
+      <ChartCard title="AI vs Human Rate by Day" wide>
+        <AiHumanRateByDay data={data.ai_human_rate_by_day} />
+      </ChartCard>
     </main>
   );
 }
