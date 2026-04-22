@@ -1,6 +1,18 @@
 import { Doughnut } from 'react-chartjs-2';
 import type { ChartOptions } from 'chart.js';
-import { COLORS, CHART_HEIGHT } from '../../lib/chartDefaults';
+import { CHART_HEIGHT } from '../../lib/chartDefaults';
+
+// Colorblind-friendly palette — high contrast, distinct hues
+const MODEL_COLORS = [
+  '#2563eb', // blue
+  '#f59e0b', // amber
+  '#10b981', // emerald
+  '#ef4444', // red
+  '#8b5cf6', // violet
+  '#06b6d4', // cyan
+  '#f97316', // orange
+  '#ec4899', // pink
+];
 
 interface DataPoint {
   model: string;
@@ -17,7 +29,9 @@ export function ModelDistribution({ data }: { data: DataPoint[] }) {
     datasets: [
       {
         data: data.map((d) => d.commits),
-        backgroundColor: COLORS.accent.slice(0, data.length),
+        backgroundColor: MODEL_COLORS.slice(0, data.length),
+        borderWidth: 2,
+        borderColor: '#ffffff',
       },
     ],
   };
