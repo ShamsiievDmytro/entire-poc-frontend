@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
+// Main navigation bar — renders at the top of every page via the layout route updated
 export function NavBar() {
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `px-3 py-1 text-sm font-medium ${
@@ -20,3 +21,4 @@ export function NavBar() {
     </header>
   );
 }
+//Here is my new line
